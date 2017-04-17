@@ -1,23 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Quiron.LojaVirtual.Dominio.Entidade
 {
     public class Carrinho
     {
-        private readonly List<ItensCarrinho> _itensCarrinho = new List<ItensCarrinho>();
+        private readonly List<ItemCarrinho> _itensCarrinho = new List<ItemCarrinho>();
         //adicionar 
         public void AdiconarItem(Produto produto,int quantidade)
         {
-            ItensCarrinho item = _itensCarrinho.FirstOrDefault(p => p.Produto.ProdutoId == produto.ProdutoId);
+            ItemCarrinho item = _itensCarrinho.FirstOrDefault(p => p.Produto.ProdutoId == produto.ProdutoId);
             if(item == null)
             {
-                _itensCarrinho.Add(new ItensCarrinho
+                _itensCarrinho.Add(new ItemCarrinho
                 {
-                    Produto = item.Produto,
+                    Produto = produto,
                     Quantidade = quantidade
                 });
             }
@@ -46,14 +43,14 @@ namespace Quiron.LojaVirtual.Dominio.Entidade
         }
 
         //Itens Carrinho
-        public IEnumerable<ItensCarrinho> ItensCarrinho
+        public IEnumerable<ItemCarrinho> ItensCarrinho
         {
             get { return _itensCarrinho; }
         }
     }
 
 
-    public class ItensCarrinho
+    public class ItemCarrinho
     {
         public Produto Produto { get; set; }
 
