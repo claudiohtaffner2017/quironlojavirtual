@@ -9,7 +9,7 @@ namespace Quiron.LojaVirtual.Dominio.Entidade
 {
     public class Pedido
     {
-        [Required(ErrorMessage="Indorme o Nlome do Cliente")]
+        [Required(ErrorMessage="Indorme o Nome do Cliente")]
         public string NomeCliente { get; set; }
 
         [Display(Name ="Cep:")]

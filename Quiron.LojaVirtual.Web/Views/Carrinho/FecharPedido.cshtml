@@ -1,0 +1,48 @@
+﻿@model Quiron.LojaVirtual.Dominio.Entidade.Pedido
+
+@{ 
+    ViewBag.Title = "Claudio: Fechar Pedido";
+}
+
+
+
+<h2>Fechar o Pedido</h2>
+<p>Digite suas informações abaixo</p>
+@Html.ValidationSummary();
+
+@using (Html.BeginForm())
+{
+   
+    <h3>Enviar para </h3>
+    <div class="form-group">
+        <label>Nome do Cliente:</label>
+        @Html.TextBoxFor(x => x.NomeCliente,new { @class = "form-control" })
+    </div>
+
+    <h3>Dados para Entrega </h3>
+    foreach (var propriedade in ViewData.ModelMetadata.Properties)
+    {
+        if (propriedade.PropertyName != "NomeCliente" && propriedade.PropertyName != "EmbrulhaPresente")
+        {
+            <div class="form-group">
+                <label>@(propriedade.DisplayName ?? propriedade.PropertyName)</label>
+                @Html.TextBox(propriedade.PropertyName, null, new { @class = "form-control" })
+            </div>
+        }
+    }
+
+        <h3>Opções </h3>
+        <div class="checkbox">
+            <label>
+                @Html.EditorFor(x=>x.EmbrulhaPresente)
+                Embrulhar para Presente?
+            </label>
+        </div>
+        
+
+
+
+
+        <input class="btn btn-primary" type="submit" value="Fechar o Pedido"/>
+}
+
